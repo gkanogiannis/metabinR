@@ -179,11 +179,13 @@ of the assignment of each sequence (column `read_id`) to which cluster
 
 This module performs hierarchical binning on metagenomic samples,
 
-First it analyzes sequences by long kmer analysis (k\>8), as in .
+First it analyzes sequences by long kmer analysis (k\>8), as in
+[`abundance_based_binning`](https://gkanogiannis.github.io/metabinR/reference/abundance_based_binning.html).
 
 Then for each AB bin, it guesses the number of composition bins in it
 and performs composition based binning by short kmer analysis (k\<8), as
-in .
+in
+[`composition_based_binning`](https://gkanogiannis.github.io/metabinR/reference/composition_based_binning.html).
 
 This module outputs, as with the independent AB and CB modules, a
 fasta/fastq for each final cluster `prefix__ABxCB.n.fasta`, containing

@@ -150,8 +150,8 @@
 <h2 id="hierarchical-2step-abxcb-binning">Hierarchical (2step ABxCB) Binning<a class="anchor" aria-label="anchor" href="#hierarchical-2step-abxcb-binning"></a>
 </h2>
 <p>This module performs hierarchical binning on metagenomic samples,</p>
-<p>First it analyzes sequences by long kmer analysis (k&gt;8), as in .</p>
-<p>Then for each AB bin, it guesses the number of composition bins in it and performs composition based binning by short kmer analysis (k&lt;8), as in .</p>
+<p>First it analyzes sequences by long kmer analysis (k&gt;8), as in <a href="https://gkanogiannis.github.io/metabinR/reference/abundance_based_binning.html"><code>abundance_based_binning</code></a>.</p>
+<p>Then for each AB bin, it guesses the number of composition bins in it and performs composition based binning by short kmer analysis (k&lt;8), as in <a href="https://gkanogiannis.github.io/metabinR/reference/composition_based_binning.html"><code>composition_based_binning</code></a>.</p>
 <p>This module outputs, as with the independent AB and CB modules, a fasta/fastq for each final cluster <code>prefix__ABxCB.n.fasta</code>, containing sequences that were assigned to it.</p>
 <p>Similarly to AB and CB module, it outputs as well, a file <code>prefix__ABxCB.assignments</code> with the information of the assignment of each sequence (column <code>read_id</code>) to which cluster (column <code>ABxCB</code>) and the distance of the sequence to each cluster (columns <code>ABxCB.n</code>).</p>
 <p>It also outputs a file <code>prefix__ABxCB.clustersDesign.tsv</code> with 3 columns. Column <code>ABxCB</code> is the id of the final hierarchical (step AB and then CB) bin. Column <code>size</code> is the number of sequences that were assigned to each ABxCB bin. Column <code>AB</code> is the id of the parent Abundance based bin (AB) that each final ABxCB bin originated from.</p>
@@ -195,7 +195,6 @@
 <ul class="list-unstyled">
 <li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/metabinR" class="external-link"><img src="https://www.bioconductor.org/shields/build/release/bioc/metabinR.svg" alt="BioC status"></a></li>
 <li><a href="https://github.com/gkanogiannis/metabinR/actions/workflows/check-bioc.yml" class="external-link"><img src="https://github.com/gkanogiannis/metabinR/actions/workflows/check-bioc.yml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/gkanogiannis/metabinR/actions/workflows/build-jar.yml" class="external-link"><img src="https://github.com/gkanogiannis/metabinR/actions/workflows/build-jar.yml/badge.svg" alt="build-jar"></a></li>
 <li><a href="https://gkanogiannis.github.io/metabinR/"><img src="https://github.com/gkanogiannis/metabinR/actions/workflows/pkgdown.yml/badge.svg" alt="pkgdown"></a></li>
 </ul>
 </div>
