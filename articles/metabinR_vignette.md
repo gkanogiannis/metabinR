@@ -211,9 +211,9 @@ knitr::kable(tab, caption = "CB binning evaluation", col.names = NULL)
 
 |              |        |
 |:-------------|-------:|
-| Vmeasure     | 0.2265 |
-| Homogeneity  | 0.1894 |
-| Completeness | 0.2816 |
+| Vmeasure     | 0.2208 |
+| Homogeneity  | 0.1838 |
+| Completeness | 0.2763 |
 
 CB binning evaluation
 
