@@ -35,6 +35,7 @@ discovery from metagenomes.
 To install `metabinR` package:
 
 ``` r
+
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 BiocManager::install("metabinR")
@@ -43,6 +44,7 @@ BiocManager::install("metabinR")
 You can install the development version of `metabinR` like so:
 
 ``` r
+
 devtools::install_github("gkanogiannis/metabinR")
 ```
 
@@ -106,6 +108,7 @@ Gigabyte or 1024 Megabytes of maximum RAM for JVM.
 In order to allocate 3GB of RAM for the JVM, through R code, use:
 
 ``` r
+
 options(java.parameters="-Xmx3G")
 ```
 

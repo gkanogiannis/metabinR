@@ -16,6 +16,7 @@ inputs in addition to file paths.
 ## Installation
 
 ``` r
+
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("metabinR")
@@ -32,6 +33,7 @@ flag controls the maximum heap: `-Xmx1500M` or `-Xmx3G`, etc. Set this
 **before** loading the package.
 
 ``` r
+
 options(java.parameters = "-Xmx1500M")
 library(metabinR)
 library(data.table)
@@ -68,6 +70,7 @@ classes (high vs. low).
 Abundance ground truth:
 
 ``` r
+
 abundances <- read.table(
     system.file("extdata", "distribution_0.txt", package = "metabinR"),
     col.names = c("genome_id", "abundance", "AB_id"))
@@ -76,6 +79,7 @@ abundances <- read.table(
 Read-level ground truth:
 
 ``` r
+
 reads.mapping <- fread(
         system.file("extdata", "reads_mapping.tsv.gz", package = "metabinR")) %>%
     merge(abundances[, c("genome_id", "AB_id")], by = "genome_id") %>%
@@ -85,6 +89,7 @@ reads.mapping <- fread(
 Run abundance-based binning with 10-mers into 2 clusters:
 
 ``` r
+
 res.AB <- abundance_based_binning(
     system.file("extdata", "reads.metagenome.fasta.gz", package = "metabinR"),
     numOfClustersAB = 2,
@@ -104,6 +109,7 @@ res.AB
 cluster labels out of it:
 
 ``` r
+
 assignments.AB <- as.data.frame(res.AB) %>% arrange(read_id)
 ```
 
@@ -111,6 +117,7 @@ assignments.AB <- as.data.frame(res.AB) %>% arrange(read_id)
 wrote one FASTA per cluster and a k-mer count histogram:
 
 ``` r
+
 histogram.AB <- read.table("vignette__AB.histogram.tsv", header = TRUE)
 ggplot(histogram.AB, aes(x = counts, y = frequency)) +
     geom_area() +
@@ -123,6 +130,7 @@ ggplot(histogram.AB, aes(x = counts, y = frequency)) +
 Evaluate against the abundance-class ground truth:
 
 ``` r
+
 eval.AB.cvms <- cvms::evaluate(
     data = data.frame(
         prediction = as.character(assignments.AB$AB),
@@ -156,6 +164,7 @@ grid.arrange(p, ncol = 1)
 ![](metabinR_vignette_files/figure-html/unnamed-chunk-9-1.png)
 
 ``` r
+
 knitr::kable(tab, caption = "AB binning evaluation", col.names = NULL)
 ```
 
@@ -168,13 +177,14 @@ knitr::kable(tab, caption = "AB binning evaluation", col.names = NULL)
 | Kappa       | 0.6560 |
 | Vmeasure    | 0.3553 |
 
-AB binning evaluation
+AB binning evaluation {.table}
 
 ## Composition based binning example
 
 Read-level ground truth (bacterial genome of origin):
 
 ``` r
+
 reads.mapping <- fread(
         system.file("extdata", "reads_mapping.tsv.gz", package = "metabinR")) %>%
     arrange(anonymous_read_id)
@@ -183,6 +193,7 @@ reads.mapping <- fread(
 Run composition-based binning with 4-mers into 10 clusters:
 
 ``` r
+
 res.CB <- composition_based_binning(
     system.file("extdata", "reads.metagenome.fasta.gz", package = "metabinR"),
     numOfClustersCB = 10,
@@ -196,6 +207,7 @@ assignments.CB <- as.data.frame(res.CB) %>% arrange(read_id)
 As a pure clustering task, evaluate with extrinsic measures:
 
 ``` r
+
 eval.CB.sabre <- sabre::vmeasure(
     as.character(assignments.CB$CB),
     as.character(reads.mapping$genome_id))
@@ -211,15 +223,16 @@ knitr::kable(tab, caption = "CB binning evaluation", col.names = NULL)
 
 |              |        |
 |:-------------|-------:|
-| Vmeasure     | 0.2222 |
-| Homogeneity  | 0.1847 |
-| Completeness | 0.2788 |
+| Vmeasure     | 0.2233 |
+| Homogeneity  | 0.1867 |
+| Completeness | 0.2778 |
 
-CB binning evaluation
+CB binning evaluation {.table}
 
 ## Hierarchical (2-step ABxCB) binning example
 
 ``` r
+
 res.ABxCB <- hierarchical_binning(
     system.file("extdata", "reads.metagenome.fasta.gz", package = "metabinR"),
     numOfClustersAB = 2,
@@ -249,7 +262,7 @@ knitr::kable(tab, caption = "ABxCB binning evaluation", col.names = NULL)
 | Homogeneity  | 0.4722 |
 | Completeness | 0.2021 |
 
-ABxCB binning evaluation
+ABxCB binning evaluation {.table}
 
 ## In-memory inputs (Biostrings / ShortRead)
 
@@ -258,6 +271,7 @@ Instead of a path, you can pass a `DNAStringSet`,
 from disk, so non-file inputs are staged to a tempfile transparently.
 
 ``` r
+
 reads <- Biostrings::readDNAStringSet(
     system.file("extdata", "reads.metagenome.fasta.gz", package = "metabinR"))
 
@@ -274,12 +288,14 @@ identical(nrow(assignments(res.AB.mem)), nrow(assignments(res.AB)))
 Clean up files written by the AB run:
 
 ``` r
+
 unlink("vignette__*")
 ```
 
 ## Session Info
 
 ``` r
+
 utils::sessionInfo()
 #> R version 4.6.0 (2026-04-24)
 #> Platform: x86_64-pc-linux-gnu
@@ -305,34 +321,34 @@ utils::sessionInfo()
 #> [8] base     
 #> 
 #> other attached packages:
-#>  [1] Biostrings_2.79.5   Seqinfo_1.1.0       XVector_0.51.0     
-#>  [4] IRanges_2.45.0      S4Vectors_0.49.2    BiocGenerics_0.57.1
+#>  [1] Biostrings_2.80.0   Seqinfo_1.2.0       XVector_0.52.0     
+#>  [4] IRanges_2.46.0      S4Vectors_0.50.0    BiocGenerics_0.58.0
 #>  [7] generics_0.1.4      sabre_0.4.3         cvms_2.0.0         
 #> [10] gridExtra_2.3       ggplot2_4.0.3       dplyr_1.2.1        
-#> [13] data.table_1.18.2.1 metabinR_1.99.0     BiocStyle_2.39.0   
+#> [13] data.table_1.18.2.1 metabinR_2.1.0      BiocStyle_2.40.0   
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] tidyselect_1.2.1            farver_2.1.2               
 #>  [3] R.utils_2.13.0              S7_0.2.2                   
 #>  [5] bitops_1.0-9                fastmap_1.2.0              
-#>  [7] pROC_1.19.0.1               GenomicAlignments_1.47.0   
+#>  [7] pROC_1.19.0.1               GenomicAlignments_1.48.0   
 #>  [9] digest_0.6.39               lifecycle_1.0.5            
-#> [11] sf_1.1-0                    pwalign_1.7.0              
+#> [11] sf_1.1-0                    pwalign_1.8.0              
 #> [13] terra_1.9-11                magrittr_2.0.5             
 #> [15] compiler_4.6.0              rlang_1.2.0                
 #> [17] sass_0.4.10                 tools_4.6.0                
 #> [19] yaml_2.3.12                 knitr_1.51                 
-#> [21] labeling_0.4.3              S4Arrays_1.11.1            
+#> [21] labeling_0.4.3              S4Arrays_1.12.0            
 #> [23] classInt_0.4-11             interp_1.1-6               
-#> [25] sp_2.2-1                    DelayedArray_0.37.1        
+#> [25] sp_2.2-1                    DelayedArray_0.38.0        
 #> [27] plyr_1.8.9                  RColorBrewer_1.1-3         
 #> [29] KernSmooth_2.23-26          abind_1.4-8                
-#> [31] ShortRead_1.69.4            BiocParallel_1.45.0        
+#> [31] ShortRead_1.70.0            BiocParallel_1.45.0        
 #> [33] withr_3.0.2                 purrr_1.2.2                
 #> [35] hwriter_1.3.2.1             R.oo_1.27.1                
 #> [37] desc_1.4.3                  grid_4.6.0                 
 #> [39] latticeExtra_0.6-31         e1071_1.7-17               
-#> [41] scales_1.4.0                SummarizedExperiment_1.41.1
+#> [41] scales_1.4.0                SummarizedExperiment_1.42.0
 #> [43] cli_3.6.6                   rmarkdown_2.31             
 #> [45] crayon_1.5.3                ragg_1.5.2                 
 #> [47] proxy_0.4-29                DBI_1.3.0                  
@@ -346,16 +362,16 @@ utils::sessionInfo()
 #> [63] pkgdown_2.2.0               codetools_0.2-20           
 #> [65] rJava_1.0-18                gtable_0.3.6               
 #> [67] deldir_2.0-4                raster_3.6-32              
-#> [69] GenomicRanges_1.63.2        tibble_3.3.1               
+#> [69] GenomicRanges_1.64.0        tibble_3.3.1               
 #> [71] pillar_1.11.1               htmltools_0.5.9            
 #> [73] entropy_1.3.2               R6_2.6.1                   
 #> [75] textshaping_1.0.5           evaluate_1.0.5             
-#> [77] lattice_0.22-9              Biobase_2.71.0             
+#> [77] lattice_0.22-9              Biobase_2.72.0             
 #> [79] R.methodsS3_1.8.2           png_0.1-9                  
-#> [81] backports_1.5.1             Rsamtools_2.27.2           
-#> [83] cigarillo_1.1.0             bslib_0.10.0               
-#> [85] class_7.3-23                Rcpp_1.1.1-1               
-#> [87] SparseArray_1.11.13         checkmate_2.3.4            
+#> [81] backports_1.5.1             Rsamtools_2.28.0           
+#> [83] cigarillo_1.2.0             bslib_0.10.0               
+#> [85] class_7.3-23                Rcpp_1.1.1-1.1             
+#> [87] SparseArray_1.12.0          checkmate_2.3.4            
 #> [89] xfun_0.57                   fs_2.1.0                   
-#> [91] MatrixGenerics_1.23.0       pkgconfig_2.0.3
+#> [91] MatrixGenerics_1.24.0       pkgconfig_2.0.3
 ```
