@@ -1,9 +1,9 @@
 pandoc: 3.8.3
-pkgdown: 2.2.0
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   metabinR_vignette: metabinR_vignette.html
-last_built: 2026-04-30T08:37Z
+last_built: 2026-09-27T18:38Z
 urls:
   reference: https://gkanogiannis.github.io/metabinR/reference
   article: https://gkanogiannis.github.io/metabinR/articles

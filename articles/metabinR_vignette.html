@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>metabinR • metabinR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="metabinR">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metabinR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@ Biostrings / ShortRead inputs in addition to file paths.</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"metabinR"</span><span class="op">)</span></span></code></pre></div>
-<p>A JDK (Java &gt;= 17) must be available before installing
+<p>A JDK (Java &gt;= 11) must be available before installing
 <code>metabinR</code>.</p>
 </div>
 <div class="section level2">
@@ -104,12 +104,7 @@ The <code>-Xmx</code> flag controls the maximum heap:
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>java.parameters <span class="op">=</span> <span class="st">"-Xmx1500M"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gkanogiannis/metabinR" class="external-link">metabinR</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ludvigolsen/cvms" class="external-link">cvms</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jakubnowosad.com/sabre/" class="external-link">sabre</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/Biostrings" class="external-link">Biostrings</a></span><span class="op">)</span></span></code></pre></div>
 <p>To customise additional JVM flags (on top of the <code>-Xmx</code>
 heap setting), set
@@ -140,6 +135,11 @@ or <code>"ABxCB"</code>.</li>
 <code>as.data.frame(res)</code> — the v1.x tabular layout for
 back-compat.</li>
 </ul>
+<p>The <code>read_id</code> column identifies each read. The column
+named by <code>algorithm(res)</code> contains its assigned bin, and
+columns such as <code>AB.1</code> contain distances to candidate bins.
+Bin numbers are arbitrary labels; they do not identify genomes or
+abundance classes on their own.</p>
 </div>
 <div class="section level2">
 <h2 id="abundance-based-binning-example">Abundance based binning example<a class="anchor" aria-label="anchor" href="#abundance-based-binning-example"></a>
@@ -152,12 +152,14 @@ classes (high vs. low).</p>
 <code class="sourceCode R"><span><span class="va">abundances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"distribution_0.txt"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span>,</span>
 <span>    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"genome_id"</span>, <span class="st">"abundance"</span>, <span class="st">"AB_id"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Read-level ground truth:</p>
+<p>Read-level ground truth contains the genome of origin for each read.
+Add the abundance class of each genome for the AB evaluation:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">reads.mapping</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/fread.html" class="external-link">fread</a></span><span class="op">(</span></span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"reads_mapping.tsv.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">abundances</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"genome_id"</span>, <span class="st">"AB_id"</span><span class="op">)</span><span class="op">]</span>, by <span class="op">=</span> <span class="st">"genome_id"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">anonymous_read_id</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">reads.mapping</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span>
+<span>    <span class="st">"extdata"</span>, <span class="st">"reads_mapping.tsv.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">reads.mapping</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">reads.mapping</span>,</span>
+<span>                       <span class="va">abundances</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"genome_id"</span>, <span class="st">"AB_id"</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>                       by <span class="op">=</span> <span class="st">"genome_id"</span><span class="op">)</span></span></code></pre></div>
 <p>Run abundance-based binning with 10-mers into 2 clusters:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res.AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/abundance_based_binning.html">abundance_based_binning</a></span><span class="op">(</span></span>
@@ -173,10 +175,43 @@ classes (high vs. low).</p>
 <span><span class="co">#&gt;   clusters:  2</span></span>
 <span><span class="co">#&gt;   inputs:    1 file(s)</span></span>
 <span><span class="co">#&gt;     - /home/runner/work/_temp/Library/metabinR/extdata/reads.metagenome.fasta.gz</span></span></code></pre></div>
-<p><code>res.AB</code> is a <code>MetabinResult</code>. Extract the
-per-read table and pull the cluster labels out of it:</p>
+<p>Inspect the assignments and summarize the observed bins. The distance
+summaries use only each read’s distance to its assigned bin:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">assignments.AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">read_id</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/MetabinResult-accessors.html">assignments</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   read_id AB        AB.1        AB.2</span></span>
+<span><span class="co">#&gt; 1  S0R0/1  1 0.032307751 0.004981781</span></span>
+<span><span class="co">#&gt; 2  S0R0/2  1 0.030796454 0.005614620</span></span>
+<span><span class="co">#&gt; 3  S0R1/1  1 0.021667648 0.009437209</span></span>
+<span><span class="co">#&gt; 4  S0R1/2  1 0.019364505 0.010336333</span></span>
+<span><span class="co">#&gt; 5  S0R2/1  1 0.013742806 0.012755650</span></span>
+<span><span class="co">#&gt; 6  S0R2/2  2 0.009775655 0.014416852</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/bin_summary.html">bin_summary</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">bin</th>
+<th align="right">n_reads</th>
+<th align="right">proportion</th>
+<th align="right">mean_distance</th>
+<th align="right">median_distance</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">19761</td>
+<td align="right">0.741</td>
+<td align="right">0.024</td>
+<td align="right">0.024</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">6903</td>
+<td align="right">0.259</td>
+<td align="right">0.015</td>
+<td align="right">0.015</td>
+</tr>
+</tbody>
+</table>
 <p><code><a href="../reference/abundance_based_binning.html">abundance_based_binning()</a></code> wrote one FASTA per cluster
 and a k-mer count histogram:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -186,122 +221,359 @@ and a k-mer count histogram:</p>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"kmer counts histogram"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="metabinR_vignette_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
-<p>Evaluate against the abundance-class ground truth:</p>
+<p>Evaluate against the abundance-class ground truth.
+<code><a href="../reference/evaluate_bins.html">evaluate_bins()</a></code> matches <code>read_id</code> to
+<code>anonymous_read_id</code>, so the two tables need not have the same
+row order. The confusion table has inferred bins as rows and known
+abundance classes as columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">eval.AB.cvms</span> <span class="op">&lt;-</span> <span class="fu">cvms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cvms/man/evaluate.html" class="external-link">evaluate</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>        prediction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">assignments.AB</span><span class="op">$</span><span class="va">AB</span><span class="op">)</span>,</span>
-<span>        target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">reads.mapping</span><span class="op">$</span><span class="va">AB_id</span><span class="op">)</span>,</span>
-<span>        stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
-<span>    target_col <span class="op">=</span> <span class="st">"target"</span>,</span>
-<span>    prediction_cols <span class="op">=</span> <span class="st">"prediction"</span>,</span>
-<span>    type <span class="op">=</span> <span class="st">"binomial"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">eval.AB.sabre</span> <span class="op">&lt;-</span> <span class="fu">sabre</span><span class="fu">::</span><span class="fu"><a href="https://jakubnowosad.com/sabre/reference/vmeasure.html" class="external-link">vmeasure</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">assignments.AB</span><span class="op">$</span><span class="va">AB</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">reads.mapping</span><span class="op">$</span><span class="va">AB_id</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">cvms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cvms/man/plot_confusion_matrix.html" class="external-link">plot_confusion_matrix</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Confusion Matrix"</span>,</span>
-<span>         x <span class="op">=</span> <span class="st">"Target Abundance Class"</span>,</span>
-<span>         y <span class="op">=</span> <span class="st">"Predicted Abundance Class"</span><span class="op">)</span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>        Accuracy    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">$</span><span class="va">Accuracy</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Specificity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">$</span><span class="va">Specificity</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Sensitivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">$</span><span class="va">Sensitivity</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Fscore      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">$</span><span class="va">F1</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Kappa       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.cvms</span><span class="op">$</span><span class="va">Kappa</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Vmeasure    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.AB.sabre</span><span class="op">$</span><span class="va">v_measure</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="metabinR_vignette_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tab</span>, caption <span class="op">=</span> <span class="st">"AB binning evaluation"</span>, col.names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">eval.AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/evaluate_bins.html">evaluate_bins</a></span><span class="op">(</span><span class="va">res.AB</span>, <span class="va">reads.mapping</span>,</span>
+<span>                         id <span class="op">=</span> <span class="st">"anonymous_read_id"</span>, label <span class="op">=</span> <span class="st">"AB_id"</span><span class="op">)</span></span>
+<span><span class="va">eval.AB</span><span class="op">$</span><span class="va">confusion</span></span>
+<span><span class="co">#&gt;    origin</span></span>
+<span><span class="co">#&gt; bin     1     2</span></span>
+<span><span class="co">#&gt;   1 18185  1576</span></span>
+<span><span class="co">#&gt;   2  1891  5012</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">eval.AB</span><span class="op">$</span><span class="va">per_bin</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>AB binning evaluation</caption>
+<thead><tr class="header">
+<th align="left">bin</th>
+<th align="right">n_reads</th>
+<th align="left">dominant_origin</th>
+<th align="right">dominant_reads</th>
+<th align="right">purity</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Accuracy</td>
-<td align="right">0.8700</td>
+<td align="left">1</td>
+<td align="right">19761</td>
+<td align="left">1</td>
+<td align="right">18185</td>
+<td align="right">0.920</td>
 </tr>
 <tr class="even">
-<td align="left">Specificity</td>
-<td align="right">0.9058</td>
-</tr>
-<tr class="odd">
-<td align="left">Sensitivity</td>
-<td align="right">0.7608</td>
-</tr>
-<tr class="even">
-<td align="left">Fscore</td>
-<td align="right">0.7430</td>
-</tr>
-<tr class="odd">
-<td align="left">Kappa</td>
-<td align="right">0.6560</td>
-</tr>
-<tr class="even">
-<td align="left">Vmeasure</td>
-<td align="right">0.3553</td>
+<td align="left">2</td>
+<td align="right">6903</td>
+<td align="left">2</td>
+<td align="right">5012</td>
+<td align="right">0.726</td>
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">eval.AB</span><span class="op">$</span><span class="va">overall</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="10%">
+<col width="8%">
+<col width="12%">
+<col width="20%">
+<col width="22%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">n_reads</th>
+<th align="right">n_bins</th>
+<th align="right">n_origins</th>
+<th align="right">weighted_purity</th>
+<th align="right">weighted_recovery</th>
+<th align="right">adjusted_rand_index</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">26664</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0.87</td>
+<td align="right">0.87</td>
+<td align="right">0.519</td>
+</tr></tbody>
+</table>
+<p>Per-bin purity is the fraction of reads in a bin from its dominant
+abundance class. The adjusted Rand index (ARI) compares the two
+partitions without assuming that their labels correspond.</p>
 </div>
 <div class="section level2">
 <h2 id="composition-based-binning-example">Composition based binning example<a class="anchor" aria-label="anchor" href="#composition-based-binning-example"></a>
 </h2>
-<p>Read-level ground truth (bacterial genome of origin):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">reads.mapping</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/fread.html" class="external-link">fread</a></span><span class="op">(</span></span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"reads_mapping.tsv.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">anonymous_read_id</span><span class="op">)</span></span></code></pre></div>
+<p>Here the known label is the bacterial genome of origin, rather than
+the abundance class used above.</p>
 <p>Run composition-based binning with 4-mers into 10 clusters:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res.CB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/composition_based_binning.html">composition_based_binning</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"reads.metagenome.fasta.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span>,</span>
 <span>    numOfClustersCB <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>    kMerSizeCB <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>    dryRun <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    outputCB <span class="op">=</span> <span class="st">"vignette"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">assignments.CB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res.CB</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">read_id</span><span class="op">)</span></span></code></pre></div>
-<p>As a pure clustering task, evaluate with extrinsic measures:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">eval.CB.sabre</span> <span class="op">&lt;-</span> <span class="fu">sabre</span><span class="fu">::</span><span class="fu"><a href="https://jakubnowosad.com/sabre/reference/vmeasure.html" class="external-link">vmeasure</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">assignments.CB</span><span class="op">$</span><span class="va">CB</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">reads.mapping</span><span class="op">$</span><span class="va">genome_id</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>        Vmeasure     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.CB.sabre</span><span class="op">$</span><span class="va">v_measure</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Homogeneity  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.CB.sabre</span><span class="op">$</span><span class="va">homogeneity</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Completeness <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.CB.sabre</span><span class="op">$</span><span class="va">completeness</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tab</span>, caption <span class="op">=</span> <span class="st">"CB binning evaluation"</span>, col.names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Check bin sizes and inspect reads with close competing distances. The
+<code>margin</code> is an absolute distance difference on this
+algorithm’s scale, not a probability. A small result can mean either
+that few reads are close to a boundary or that the chosen margin is too
+narrow:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/bin_summary.html">bin_summary</a></span><span class="op">(</span><span class="va">res.CB</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>CB binning evaluation</caption>
+<thead><tr class="header">
+<th align="left">bin</th>
+<th align="right">n_reads</th>
+<th align="right">proportion</th>
+<th align="right">mean_distance</th>
+<th align="right">median_distance</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Vmeasure</td>
-<td align="right">0.2233</td>
+<td align="left">7</td>
+<td align="right">5687</td>
+<td align="right">0.213</td>
+<td align="right">15463.45</td>
+<td align="right">15354</td>
 </tr>
 <tr class="even">
-<td align="left">Homogeneity</td>
-<td align="right">0.1867</td>
+<td align="left">10</td>
+<td align="right">1450</td>
+<td align="right">0.054</td>
+<td align="right">16622.33</td>
+<td align="right">16688</td>
 </tr>
 <tr class="odd">
-<td align="left">Completeness</td>
-<td align="right">0.2778</td>
+<td align="left">6</td>
+<td align="right">1036</td>
+<td align="right">0.039</td>
+<td align="right">15260.93</td>
+<td align="right">15099</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="right">7571</td>
+<td align="right">0.284</td>
+<td align="right">16480.01</td>
+<td align="right">16472</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="right">2855</td>
+<td align="right">0.107</td>
+<td align="right">15620.85</td>
+<td align="right">15452</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">1708</td>
+<td align="right">0.064</td>
+<td align="right">16207.55</td>
+<td align="right">16081</td>
+</tr>
+<tr class="odd">
+<td align="left">9</td>
+<td align="right">3974</td>
+<td align="right">0.149</td>
+<td align="right">15891.34</td>
+<td align="right">15757</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="right">1215</td>
+<td align="right">0.046</td>
+<td align="right">15094.21</td>
+<td align="right">14892</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="right">539</td>
+<td align="right">0.020</td>
+<td align="right">16352.11</td>
+<td align="right">16174</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">629</td>
+<td align="right">0.024</td>
+<td align="right">16610.71</td>
+<td align="right">16412</td>
 </tr>
 </tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">close.reads</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ambiguous_reads.html">ambiguous_reads</a></span><span class="op">(</span><span class="va">res.CB</span>, margin <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">close.reads</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 15</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">close.reads</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">read_id</th>
+<th align="left">bin</th>
+<th align="right">best_distance</th>
+<th align="right">second_distance</th>
+<th align="right">distance_margin</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">S0R774/2</td>
+<td align="left">5</td>
+<td align="right">15726</td>
+<td align="right">15726</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">S0R2707/2</td>
+<td align="left">4</td>
+<td align="right">16176</td>
+<td align="right">16176</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">S0R3591/1</td>
+<td align="left">5</td>
+<td align="right">15214</td>
+<td align="right">15214</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">S0R5272/1</td>
+<td align="left">5</td>
+<td align="right">15904</td>
+<td align="right">15904</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">S0R5811/2</td>
+<td align="left">6</td>
+<td align="right">17310</td>
+<td align="right">17310</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">S0R7348/1</td>
+<td align="left">1</td>
+<td align="right">16936</td>
+<td align="right">16936</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Evaluate by genome of origin. Best-bin recovery is the fraction of an
+origin’s reads found in its single largest bin; it is not genome
+completeness. Weighted purity and recovery summarize these counts over
+all evaluated reads:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eval.CB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/evaluate_bins.html">evaluate_bins</a></span><span class="op">(</span><span class="va">res.CB</span>, <span class="va">reads.mapping</span>,</span>
+<span>                         id <span class="op">=</span> <span class="st">"anonymous_read_id"</span>, label <span class="op">=</span> <span class="st">"genome_id"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">eval.CB</span><span class="op">$</span><span class="va">per_origin</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">origin</th>
+<th align="right">n_reads</th>
+<th align="left">dominant_bin</th>
+<th align="right">recovered_reads</th>
+<th align="right">best_bin_recovery</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Genome15.0</td>
+<td align="right">14190</td>
+<td align="left">7</td>
+<td align="right">5136</td>
+<td align="right">0.362</td>
+</tr>
+<tr class="even">
+<td align="left">Genome3.0</td>
+<td align="right">5886</td>
+<td align="left">9</td>
+<td align="right">1565</td>
+<td align="right">0.266</td>
+</tr>
+<tr class="odd">
+<td align="left">Genome2.0</td>
+<td align="right">538</td>
+<td align="left">3</td>
+<td align="right">219</td>
+<td align="right">0.407</td>
+</tr>
+<tr class="even">
+<td align="left">Genome12.0</td>
+<td align="right">3782</td>
+<td align="left">3</td>
+<td align="right">3677</td>
+<td align="right">0.972</td>
+</tr>
+<tr class="odd">
+<td align="left">Genome11.0</td>
+<td align="right">1186</td>
+<td align="left">3</td>
+<td align="right">1152</td>
+<td align="right">0.971</td>
+</tr>
+<tr class="even">
+<td align="left">Genome6.0</td>
+<td align="right">356</td>
+<td align="left">2</td>
+<td align="right">57</td>
+<td align="right">0.160</td>
+</tr>
+<tr class="odd">
+<td align="left">Genome17.0</td>
+<td align="right">594</td>
+<td align="left">1</td>
+<td align="right">233</td>
+<td align="right">0.392</td>
+</tr>
+<tr class="even">
+<td align="left">Genome22.0</td>
+<td align="right">8</td>
+<td align="left">3</td>
+<td align="right">6</td>
+<td align="right">0.750</td>
+</tr>
+<tr class="odd">
+<td align="left">Genome23.0</td>
+<td align="right">80</td>
+<td align="left">3</td>
+<td align="right">80</td>
+<td align="right">1.000</td>
+</tr>
+<tr class="even">
+<td align="left">Genome4.0</td>
+<td align="right">44</td>
+<td align="left">2</td>
+<td align="right">14</td>
+<td align="right">0.318</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">eval.CB</span><span class="op">$</span><span class="va">overall</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="10%">
+<col width="8%">
+<col width="12%">
+<col width="20%">
+<col width="22%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">n_reads</th>
+<th align="right">n_bins</th>
+<th align="right">n_origins</th>
+<th align="right">weighted_purity</th>
+<th align="right">weighted_recovery</th>
+<th align="right">adjusted_rand_index</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">26664</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">0.615</td>
+<td align="right">0.455</td>
+<td align="right">0.12</td>
+</tr></tbody>
 </table>
 </div>
 <div class="section level2">
 <h2 id="hierarchical-2-step-abxcb-binning-example">Hierarchical (2-step ABxCB) binning example<a class="anchor" aria-label="anchor" href="#hierarchical-2-step-abxcb-binning-example"></a>
 </h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res.ABxCB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hierarchical_binning.html">hierarchical_binning</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"reads.metagenome.fasta.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span>,</span>
 <span>    numOfClustersAB <span class="op">=</span> <span class="fl">2</span>,</span>
@@ -310,36 +582,66 @@ and a k-mer count histogram:</p>
 <span>    dryRun <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    outputC <span class="op">=</span> <span class="st">"vignette"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">assignments.ABxCB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res.ABxCB</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">read_id</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">eval.ABxCB.sabre</span> <span class="op">&lt;-</span> <span class="fu">sabre</span><span class="fu">::</span><span class="fu"><a href="https://jakubnowosad.com/sabre/reference/vmeasure.html" class="external-link">vmeasure</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">assignments.ABxCB</span><span class="op">$</span><span class="va">ABxCB</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">reads.mapping</span><span class="op">$</span><span class="va">genome_id</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>        Vmeasure     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.ABxCB.sabre</span><span class="op">$</span><span class="va">v_measure</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Homogeneity  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.ABxCB.sabre</span><span class="op">$</span><span class="va">homogeneity</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>        Completeness <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">eval.ABxCB.sabre</span><span class="op">$</span><span class="va">completeness</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tab</span>, caption <span class="op">=</span> <span class="st">"ABxCB binning evaluation"</span>, col.names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/bin_summary.html">bin_summary</a></span><span class="op">(</span><span class="va">res.ABxCB</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>ABxCB binning evaluation</caption>
+<thead><tr class="header">
+<th align="left">bin</th>
+<th align="right">n_reads</th>
+<th align="right">proportion</th>
+<th align="right">mean_distance</th>
+<th align="right">median_distance</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Vmeasure</td>
-<td align="right">0.2830</td>
+<td align="left">1</td>
+<td align="right">19761</td>
+<td align="right">0.741</td>
+<td align="right">16731.08</td>
+<td align="right">16490</td>
 </tr>
 <tr class="even">
-<td align="left">Homogeneity</td>
-<td align="right">0.4722</td>
-</tr>
-<tr class="odd">
-<td align="left">Completeness</td>
-<td align="right">0.2021</td>
+<td align="left">2</td>
+<td align="right">6903</td>
+<td align="right">0.259</td>
+<td align="right">16773.47</td>
+<td align="right">16304</td>
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eval.ABxCB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/evaluate_bins.html">evaluate_bins</a></span><span class="op">(</span><span class="va">res.ABxCB</span>, <span class="va">reads.mapping</span>,</span>
+<span>                            id <span class="op">=</span> <span class="st">"anonymous_read_id"</span>, label <span class="op">=</span> <span class="st">"genome_id"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">eval.ABxCB</span><span class="op">$</span><span class="va">overall</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="10%">
+<col width="8%">
+<col width="12%">
+<col width="20%">
+<col width="22%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">n_reads</th>
+<th align="right">n_bins</th>
+<th align="right">n_origins</th>
+<th align="right">weighted_purity</th>
+<th align="right">weighted_recovery</th>
+<th align="right">adjusted_rand_index</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">26664</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">0.62</td>
+<td align="right">0.904</td>
+<td align="right">0.298</td>
+</tr></tbody>
+</table>
+<p>In hierarchical results, distances for bins outside a read’s parent
+abundance bin are missing. <code><a href="../reference/ambiguous_reads.html">ambiguous_reads()</a></code> ignores those
+missing distances and omits reads with fewer than two finite
+candidates.</p>
 </div>
 <div class="section level2">
 <h2 id="in-memory-inputs-biostrings-shortread">In-memory inputs (Biostrings / ShortRead)<a class="anchor" aria-label="anchor" href="#in-memory-inputs-biostrings-shortread"></a>
@@ -348,7 +650,7 @@ and a k-mer count histogram:</p>
 <code>QualityScaledDNAStringSet</code>, or <code>ShortReadQ</code>. The
 Java backend reads from disk, so non-file inputs are staged to a
 tempfile transparently.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reads</span> <span class="op">&lt;-</span> <span class="fu">Biostrings</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"reads.metagenome.fasta.gz"</span>, package <span class="op">=</span> <span class="st">"metabinR"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -361,17 +663,17 @@ tempfile transparently.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="../reference/MetabinResult-accessors.html">assignments</a></span><span class="op">(</span><span class="va">res.AB.mem</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="../reference/MetabinResult-accessors.html">assignments</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Clean up files written by the AB run:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"vignette__*"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.6.0 (2026-04-24)</span></span>
+<span><span class="co">#&gt; R version 4.6.1 (2026-06-24)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 24.04.4 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.5 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
@@ -393,59 +695,50 @@ tempfile transparently.</p>
 <span><span class="co">#&gt; [8] base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt;  [1] Biostrings_2.80.0   Seqinfo_1.2.0       XVector_0.52.0     </span></span>
-<span><span class="co">#&gt;  [4] IRanges_2.46.0      S4Vectors_0.50.0    BiocGenerics_0.58.0</span></span>
-<span><span class="co">#&gt;  [7] generics_0.1.4      sabre_0.4.3         cvms_2.0.0         </span></span>
-<span><span class="co">#&gt; [10] gridExtra_2.3       ggplot2_4.0.3       dplyr_1.2.1        </span></span>
-<span><span class="co">#&gt; [13] data.table_1.18.2.1 metabinR_2.1.0      BiocStyle_2.40.0   </span></span>
+<span><span class="co">#&gt;  [1] Biostrings_2.80.2   Seqinfo_1.2.0       XVector_0.52.0     </span></span>
+<span><span class="co">#&gt;  [4] IRanges_2.46.0      S4Vectors_0.50.3    BiocGenerics_0.58.1</span></span>
+<span><span class="co">#&gt;  [7] generics_0.1.4      ggplot2_4.0.3       metabinR_2.1.1     </span></span>
+<span><span class="co">#&gt; [10] BiocStyle_2.40.0   </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] tidyselect_1.2.1            farver_2.1.2               </span></span>
-<span><span class="co">#&gt;  [3] R.utils_2.13.0              S7_0.2.2                   </span></span>
-<span><span class="co">#&gt;  [5] bitops_1.0-9                fastmap_1.2.0              </span></span>
-<span><span class="co">#&gt;  [7] pROC_1.19.0.1               GenomicAlignments_1.48.0   </span></span>
-<span><span class="co">#&gt;  [9] digest_0.6.39               lifecycle_1.0.5            </span></span>
-<span><span class="co">#&gt; [11] sf_1.1-0                    pwalign_1.8.0              </span></span>
-<span><span class="co">#&gt; [13] terra_1.9-11                magrittr_2.0.5             </span></span>
-<span><span class="co">#&gt; [15] compiler_4.6.0              rlang_1.2.0                </span></span>
-<span><span class="co">#&gt; [17] sass_0.4.10                 tools_4.6.0                </span></span>
-<span><span class="co">#&gt; [19] yaml_2.3.12                 knitr_1.51                 </span></span>
-<span><span class="co">#&gt; [21] labeling_0.4.3              S4Arrays_1.12.0            </span></span>
-<span><span class="co">#&gt; [23] classInt_0.4-11             interp_1.1-6               </span></span>
-<span><span class="co">#&gt; [25] sp_2.2-1                    DelayedArray_0.38.0        </span></span>
-<span><span class="co">#&gt; [27] plyr_1.8.9                  RColorBrewer_1.1-3         </span></span>
-<span><span class="co">#&gt; [29] KernSmooth_2.23-26          abind_1.4-8                </span></span>
-<span><span class="co">#&gt; [31] ShortRead_1.70.0            BiocParallel_1.45.0        </span></span>
-<span><span class="co">#&gt; [33] withr_3.0.2                 purrr_1.2.2                </span></span>
-<span><span class="co">#&gt; [35] hwriter_1.3.2.1             R.oo_1.27.1                </span></span>
-<span><span class="co">#&gt; [37] desc_1.4.3                  grid_4.6.0                 </span></span>
-<span><span class="co">#&gt; [39] latticeExtra_0.6-31         e1071_1.7-17               </span></span>
-<span><span class="co">#&gt; [41] scales_1.4.0                SummarizedExperiment_1.42.0</span></span>
-<span><span class="co">#&gt; [43] cli_3.6.6                   rmarkdown_2.31             </span></span>
-<span><span class="co">#&gt; [45] crayon_1.5.3                ragg_1.5.2                 </span></span>
-<span><span class="co">#&gt; [47] proxy_0.4-29                DBI_1.3.0                  </span></span>
-<span><span class="co">#&gt; [49] cachem_1.1.0                parallel_4.6.0             </span></span>
-<span><span class="co">#&gt; [51] BiocManager_1.30.27         matrixStats_1.5.0          </span></span>
-<span><span class="co">#&gt; [53] vctrs_0.7.3                 Matrix_1.7-5               </span></span>
-<span><span class="co">#&gt; [55] jsonlite_2.0.0              bookdown_0.46              </span></span>
-<span><span class="co">#&gt; [57] systemfonts_1.3.2           jpeg_0.1-11                </span></span>
-<span><span class="co">#&gt; [59] jquerylib_0.1.4             tidyr_1.3.2                </span></span>
-<span><span class="co">#&gt; [61] units_1.0-1                 glue_1.8.1                 </span></span>
-<span><span class="co">#&gt; [63] pkgdown_2.2.0               codetools_0.2-20           </span></span>
-<span><span class="co">#&gt; [65] rJava_1.0-18                gtable_0.3.6               </span></span>
-<span><span class="co">#&gt; [67] deldir_2.0-4                raster_3.6-32              </span></span>
-<span><span class="co">#&gt; [69] GenomicRanges_1.64.0        tibble_3.3.1               </span></span>
-<span><span class="co">#&gt; [71] pillar_1.11.1               htmltools_0.5.9            </span></span>
-<span><span class="co">#&gt; [73] entropy_1.3.2               R6_2.6.1                   </span></span>
-<span><span class="co">#&gt; [75] textshaping_1.0.5           evaluate_1.0.5             </span></span>
-<span><span class="co">#&gt; [77] lattice_0.22-9              Biobase_2.72.0             </span></span>
-<span><span class="co">#&gt; [79] R.methodsS3_1.8.2           png_0.1-9                  </span></span>
-<span><span class="co">#&gt; [81] backports_1.5.1             Rsamtools_2.28.0           </span></span>
-<span><span class="co">#&gt; [83] cigarillo_1.2.0             bslib_0.10.0               </span></span>
-<span><span class="co">#&gt; [85] class_7.3-23                Rcpp_1.1.1-1.1             </span></span>
-<span><span class="co">#&gt; [87] SparseArray_1.12.0          checkmate_2.3.4            </span></span>
-<span><span class="co">#&gt; [89] xfun_0.57                   fs_2.1.0                   </span></span>
-<span><span class="co">#&gt; [91] MatrixGenerics_1.24.0       pkgconfig_2.0.3</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] SummarizedExperiment_1.42.0 gtable_0.3.6               </span></span>
+<span><span class="co">#&gt;  [3] xfun_0.61                   bslib_0.12.0               </span></span>
+<span><span class="co">#&gt;  [5] hwriter_1.3.2.1             latticeExtra_0.6-31        </span></span>
+<span><span class="co">#&gt;  [7] rJava_1.0-18                Biobase_2.72.0             </span></span>
+<span><span class="co">#&gt;  [9] lattice_0.22-9              vctrs_0.7.3                </span></span>
+<span><span class="co">#&gt; [11] tools_4.6.1                 bitops_1.1-0               </span></span>
+<span><span class="co">#&gt; [13] parallel_4.6.1              tibble_3.3.1               </span></span>
+<span><span class="co">#&gt; [15] pkgconfig_2.0.3             Matrix_1.7-5               </span></span>
+<span><span class="co">#&gt; [17] checkmate_2.3.4             RColorBrewer_1.1-3         </span></span>
+<span><span class="co">#&gt; [19] S7_0.2.2                    desc_1.4.3                 </span></span>
+<span><span class="co">#&gt; [21] cigarillo_1.2.1             lifecycle_1.0.5            </span></span>
+<span><span class="co">#&gt; [23] farver_2.1.2                compiler_4.6.1             </span></span>
+<span><span class="co">#&gt; [25] deldir_2.0-4                Rsamtools_2.28.0           </span></span>
+<span><span class="co">#&gt; [27] textshaping_1.0.5           codetools_0.2-20           </span></span>
+<span><span class="co">#&gt; [29] htmltools_0.5.9             sass_0.4.10                </span></span>
+<span><span class="co">#&gt; [31] yaml_2.3.12                 pillar_1.11.1              </span></span>
+<span><span class="co">#&gt; [33] pkgdown_2.2.1               crayon_1.5.3               </span></span>
+<span><span class="co">#&gt; [35] jquerylib_0.1.4             BiocParallel_1.46.0        </span></span>
+<span><span class="co">#&gt; [37] DelayedArray_0.38.2         cachem_1.1.0               </span></span>
+<span><span class="co">#&gt; [39] ShortRead_1.70.0            abind_1.4-8                </span></span>
+<span><span class="co">#&gt; [41] tidyselect_1.2.1            digest_0.6.39              </span></span>
+<span><span class="co">#&gt; [43] dplyr_1.2.1                 bookdown_0.48              </span></span>
+<span><span class="co">#&gt; [45] labeling_0.4.3              fastmap_1.2.0              </span></span>
+<span><span class="co">#&gt; [47] grid_4.6.1                  cli_3.6.6                  </span></span>
+<span><span class="co">#&gt; [49] SparseArray_1.12.3          magrittr_2.0.5             </span></span>
+<span><span class="co">#&gt; [51] S4Arrays_1.12.1             withr_3.0.3                </span></span>
+<span><span class="co">#&gt; [53] scales_1.4.0                backports_1.5.1            </span></span>
+<span><span class="co">#&gt; [55] rmarkdown_2.32              pwalign_1.8.0              </span></span>
+<span><span class="co">#&gt; [57] matrixStats_1.5.0           jpeg_0.1-11                </span></span>
+<span><span class="co">#&gt; [59] interp_1.1-6                otel_0.2.0                 </span></span>
+<span><span class="co">#&gt; [61] ragg_1.5.2                  png_0.1-9                  </span></span>
+<span><span class="co">#&gt; [63] evaluate_1.0.5              knitr_1.52                 </span></span>
+<span><span class="co">#&gt; [65] GenomicRanges_1.64.0        rlang_1.3.0                </span></span>
+<span><span class="co">#&gt; [67] Rcpp_1.1.2                  glue_1.8.1                 </span></span>
+<span><span class="co">#&gt; [69] BiocManager_1.30.27         jsonlite_2.0.0             </span></span>
+<span><span class="co">#&gt; [71] R6_2.6.1                    MatrixGenerics_1.24.0      </span></span>
+<span><span class="co">#&gt; [73] GenomicAlignments_1.48.0    systemfonts_1.3.2          </span></span>
+<span><span class="co">#&gt; [75] fs_2.1.0</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -458,7 +751,7 @@ tempfile transparently.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

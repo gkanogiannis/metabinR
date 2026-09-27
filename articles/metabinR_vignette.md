@@ -22,7 +22,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("metabinR")
 ```
 
-A JDK (Java \>= 17) must be available before installing `metabinR`.
+A JDK (Java \>= 11) must be available before installing `metabinR`.
 
 ## Preparation
 
@@ -36,12 +36,7 @@ flag controls the maximum heap: `-Xmx1500M` or `-Xmx3G`, etc. Set this
 
 options(java.parameters = "-Xmx1500M")
 library(metabinR)
-library(data.table)
-library(dplyr)
 library(ggplot2)
-library(gridExtra)
-library(cvms)
-library(sabre)
 library(Biostrings)
 ```
 
@@ -61,6 +56,11 @@ Each binning function returns a `MetabinResult` S4 object:
 - `algorithm(res)` — `"AB"`, `"CB"`, or `"ABxCB"`.
 - `as.data.frame(res)` — the v1.x tabular layout for back-compat.
 
+The `read_id` column identifies each read. The column named by
+`algorithm(res)` contains its assigned bin, and columns such as `AB.1`
+contain distances to candidate bins. Bin numbers are arbitrary labels;
+they do not identify genomes or abundance classes on their own.
+
 ## Abundance based binning example
 
 The toy simulated metagenome contains 26,664 Illumina reads (13,332
@@ -76,14 +76,16 @@ abundances <- read.table(
     col.names = c("genome_id", "abundance", "AB_id"))
 ```
 
-Read-level ground truth:
+Read-level ground truth contains the genome of origin for each read. Add
+the abundance class of each genome for the AB evaluation:
 
 ``` r
 
-reads.mapping <- fread(
-        system.file("extdata", "reads_mapping.tsv.gz", package = "metabinR")) %>%
-    merge(abundances[, c("genome_id", "AB_id")], by = "genome_id") %>%
-    arrange(anonymous_read_id)
+reads.mapping <- read.delim(system.file(
+    "extdata", "reads_mapping.tsv.gz", package = "metabinR"))
+reads.mapping <- merge(reads.mapping,
+                       abundances[, c("genome_id", "AB_id")],
+                       by = "genome_id")
 ```
 
 Run abundance-based binning with 10-mers into 2 clusters:
@@ -105,13 +107,26 @@ res.AB
 #>     - /home/runner/work/_temp/Library/metabinR/extdata/reads.metagenome.fasta.gz
 ```
 
-`res.AB` is a `MetabinResult`. Extract the per-read table and pull the
-cluster labels out of it:
+Inspect the assignments and summarize the observed bins. The distance
+summaries use only each read’s distance to its assigned bin:
 
 ``` r
 
-assignments.AB <- as.data.frame(res.AB) %>% arrange(read_id)
+head(as.data.frame(assignments(res.AB)))
+#>   read_id AB        AB.1        AB.2
+#> 1  S0R0/1  1 0.032307751 0.004981781
+#> 2  S0R0/2  1 0.030796454 0.005614620
+#> 3  S0R1/1  1 0.021667648 0.009437209
+#> 4  S0R1/2  1 0.019364505 0.010336333
+#> 5  S0R2/1  1 0.013742806 0.012755650
+#> 6  S0R2/2  2 0.009775655 0.014416852
+knitr::kable(as.data.frame(bin_summary(res.AB)), digits = 3)
 ```
+
+| bin | n_reads | proportion | mean_distance | median_distance |
+|:----|--------:|-----------:|--------------:|----------------:|
+| 1   |   19761 |      0.741 |         0.024 |           0.024 |
+| 2   |    6903 |      0.259 |         0.015 |           0.015 |
 
 [`abundance_based_binning()`](https://gkanogiannis.github.io/metabinR/reference/abundance_based_binning.md)
 wrote one FASTA per cluster and a k-mer count histogram:
@@ -127,68 +142,46 @@ ggplot(histogram.AB, aes(x = counts, y = frequency)) +
 
 ![](metabinR_vignette_files/figure-html/unnamed-chunk-8-1.png)
 
-Evaluate against the abundance-class ground truth:
+Evaluate against the abundance-class ground truth.
+[`evaluate_bins()`](https://gkanogiannis.github.io/metabinR/reference/evaluate_bins.md)
+matches `read_id` to `anonymous_read_id`, so the two tables need not
+have the same row order. The confusion table has inferred bins as rows
+and known abundance classes as columns:
 
 ``` r
 
-eval.AB.cvms <- cvms::evaluate(
-    data = data.frame(
-        prediction = as.character(assignments.AB$AB),
-        target = as.character(reads.mapping$AB_id),
-        stringsAsFactors = FALSE),
-    target_col = "target",
-    prediction_cols = "prediction",
-    type = "binomial"
-)
-eval.AB.sabre <- sabre::vmeasure(
-    as.character(assignments.AB$AB),
-    as.character(reads.mapping$AB_id))
-
-p <- cvms::plot_confusion_matrix(eval.AB.cvms) +
-    labs(title = "Confusion Matrix",
-         x = "Target Abundance Class",
-         y = "Predicted Abundance Class")
-tab <- as.data.frame(
-    c(
-        Accuracy    = round(eval.AB.cvms$Accuracy, 4),
-        Specificity = round(eval.AB.cvms$Specificity, 4),
-        Sensitivity = round(eval.AB.cvms$Sensitivity, 4),
-        Fscore      = round(eval.AB.cvms$F1, 4),
-        Kappa       = round(eval.AB.cvms$Kappa, 4),
-        Vmeasure    = round(eval.AB.sabre$v_measure, 4)
-    )
-)
-grid.arrange(p, ncol = 1)
+eval.AB <- evaluate_bins(res.AB, reads.mapping,
+                         id = "anonymous_read_id", label = "AB_id")
+eval.AB$confusion
+#>    origin
+#> bin     1     2
+#>   1 18185  1576
+#>   2  1891  5012
+knitr::kable(as.data.frame(eval.AB$per_bin), digits = 3)
 ```
 
-![](metabinR_vignette_files/figure-html/unnamed-chunk-9-1.png)
+| bin | n_reads | dominant_origin | dominant_reads | purity |
+|:----|--------:|:----------------|---------------:|-------:|
+| 1   |   19761 | 1               |          18185 |  0.920 |
+| 2   |    6903 | 2               |           5012 |  0.726 |
 
 ``` r
 
-knitr::kable(tab, caption = "AB binning evaluation", col.names = NULL)
+knitr::kable(as.data.frame(eval.AB$overall), digits = 3)
 ```
 
-|             |        |
-|:------------|-------:|
-| Accuracy    | 0.8700 |
-| Specificity | 0.9058 |
-| Sensitivity | 0.7608 |
-| Fscore      | 0.7430 |
-| Kappa       | 0.6560 |
-| Vmeasure    | 0.3553 |
+| n_reads | n_bins | n_origins | weighted_purity | weighted_recovery | adjusted_rand_index |
+|---:|---:|---:|---:|---:|---:|
+| 26664 | 2 | 2 | 0.87 | 0.87 | 0.519 |
 
-AB binning evaluation {.table}
+Per-bin purity is the fraction of reads in a bin from its dominant
+abundance class. The adjusted Rand index (ARI) compares the two
+partitions without assuming that their labels correspond.
 
 ## Composition based binning example
 
-Read-level ground truth (bacterial genome of origin):
-
-``` r
-
-reads.mapping <- fread(
-        system.file("extdata", "reads_mapping.tsv.gz", package = "metabinR")) %>%
-    arrange(anonymous_read_id)
-```
+Here the known label is the bacterial genome of origin, rather than the
+abundance class used above.
 
 Run composition-based binning with 4-mers into 10 clusters:
 
@@ -201,33 +194,81 @@ res.CB <- composition_based_binning(
     dryRun = TRUE,
     outputCB = "vignette"
 )
-assignments.CB <- as.data.frame(res.CB) %>% arrange(read_id)
 ```
 
-As a pure clustering task, evaluate with extrinsic measures:
+Check bin sizes and inspect reads with close competing distances. The
+`margin` is an absolute distance difference on this algorithm’s scale,
+not a probability. A small result can mean either that few reads are
+close to a boundary or that the chosen margin is too narrow:
 
 ``` r
 
-eval.CB.sabre <- sabre::vmeasure(
-    as.character(assignments.CB$CB),
-    as.character(reads.mapping$genome_id))
-tab <- as.data.frame(
-    c(
-        Vmeasure     = round(eval.CB.sabre$v_measure, 4),
-        Homogeneity  = round(eval.CB.sabre$homogeneity, 4),
-        Completeness = round(eval.CB.sabre$completeness, 4)
-    )
-)
-knitr::kable(tab, caption = "CB binning evaluation", col.names = NULL)
+knitr::kable(as.data.frame(bin_summary(res.CB)), digits = 3)
 ```
 
-|              |        |
-|:-------------|-------:|
-| Vmeasure     | 0.2233 |
-| Homogeneity  | 0.1867 |
-| Completeness | 0.2778 |
+| bin | n_reads | proportion | mean_distance | median_distance |
+|:----|--------:|-----------:|--------------:|----------------:|
+| 7   |    5687 |      0.213 |      15463.45 |           15354 |
+| 10  |    1450 |      0.054 |      16622.33 |           16688 |
+| 6   |    1036 |      0.039 |      15260.93 |           15099 |
+| 3   |    7571 |      0.284 |      16480.01 |           16472 |
+| 5   |    2855 |      0.107 |      15620.85 |           15452 |
+| 1   |    1708 |      0.064 |      16207.55 |           16081 |
+| 9   |    3974 |      0.149 |      15891.34 |           15757 |
+| 4   |    1215 |      0.046 |      15094.21 |           14892 |
+| 8   |     539 |      0.020 |      16352.11 |           16174 |
+| 2   |     629 |      0.024 |      16610.71 |           16412 |
 
-CB binning evaluation {.table}
+``` r
+
+close.reads <- ambiguous_reads(res.CB, margin = 0.05)
+nrow(close.reads)
+#> [1] 15
+knitr::kable(head(as.data.frame(close.reads)), digits = 3)
+```
+
+| read_id   | bin | best_distance | second_distance | distance_margin |
+|:----------|:----|--------------:|----------------:|----------------:|
+| S0R774/2  | 5   |         15726 |           15726 |               0 |
+| S0R2707/2 | 4   |         16176 |           16176 |               0 |
+| S0R3591/1 | 5   |         15214 |           15214 |               0 |
+| S0R5272/1 | 5   |         15904 |           15904 |               0 |
+| S0R5811/2 | 6   |         17310 |           17310 |               0 |
+| S0R7348/1 | 1   |         16936 |           16936 |               0 |
+
+Evaluate by genome of origin. Best-bin recovery is the fraction of an
+origin’s reads found in its single largest bin; it is not genome
+completeness. Weighted purity and recovery summarize these counts over
+all evaluated reads:
+
+``` r
+
+eval.CB <- evaluate_bins(res.CB, reads.mapping,
+                         id = "anonymous_read_id", label = "genome_id")
+knitr::kable(as.data.frame(eval.CB$per_origin), digits = 3)
+```
+
+| origin     | n_reads | dominant_bin | recovered_reads | best_bin_recovery |
+|:-----------|--------:|:-------------|----------------:|------------------:|
+| Genome15.0 |   14190 | 7            |            5136 |             0.362 |
+| Genome3.0  |    5886 | 9            |            1565 |             0.266 |
+| Genome2.0  |     538 | 3            |             219 |             0.407 |
+| Genome12.0 |    3782 | 3            |            3677 |             0.972 |
+| Genome11.0 |    1186 | 3            |            1152 |             0.971 |
+| Genome6.0  |     356 | 2            |              57 |             0.160 |
+| Genome17.0 |     594 | 1            |             233 |             0.392 |
+| Genome22.0 |       8 | 3            |               6 |             0.750 |
+| Genome23.0 |      80 | 3            |              80 |             1.000 |
+| Genome4.0  |      44 | 2            |              14 |             0.318 |
+
+``` r
+
+knitr::kable(as.data.frame(eval.CB$overall), digits = 3)
+```
+
+| n_reads | n_bins | n_origins | weighted_purity | weighted_recovery | adjusted_rand_index |
+|---:|---:|---:|---:|---:|---:|
+| 26664 | 10 | 10 | 0.615 | 0.455 | 0.12 |
 
 ## Hierarchical (2-step ABxCB) binning example
 
@@ -241,28 +282,30 @@ res.ABxCB <- hierarchical_binning(
     dryRun = TRUE,
     outputC = "vignette"
 )
-assignments.ABxCB <- as.data.frame(res.ABxCB) %>% arrange(read_id)
-
-eval.ABxCB.sabre <- sabre::vmeasure(
-    as.character(assignments.ABxCB$ABxCB),
-    as.character(reads.mapping$genome_id))
-tab <- as.data.frame(
-    c(
-        Vmeasure     = round(eval.ABxCB.sabre$v_measure, 4),
-        Homogeneity  = round(eval.ABxCB.sabre$homogeneity, 4),
-        Completeness = round(eval.ABxCB.sabre$completeness, 4)
-    )
-)
-knitr::kable(tab, caption = "ABxCB binning evaluation", col.names = NULL)
+knitr::kable(as.data.frame(bin_summary(res.ABxCB)), digits = 3)
 ```
 
-|              |        |
-|:-------------|-------:|
-| Vmeasure     | 0.2830 |
-| Homogeneity  | 0.4722 |
-| Completeness | 0.2021 |
+| bin | n_reads | proportion | mean_distance | median_distance |
+|:----|--------:|-----------:|--------------:|----------------:|
+| 1   |   19761 |      0.741 |      16731.08 |           16490 |
+| 2   |    6903 |      0.259 |      16773.47 |           16304 |
 
-ABxCB binning evaluation {.table}
+``` r
+
+eval.ABxCB <- evaluate_bins(res.ABxCB, reads.mapping,
+                            id = "anonymous_read_id", label = "genome_id")
+knitr::kable(as.data.frame(eval.ABxCB$overall), digits = 3)
+```
+
+| n_reads | n_bins | n_origins | weighted_purity | weighted_recovery | adjusted_rand_index |
+|---:|---:|---:|---:|---:|---:|
+| 26664 | 2 | 10 | 0.62 | 0.904 | 0.298 |
+
+In hierarchical results, distances for bins outside a read’s parent
+abundance bin are missing.
+[`ambiguous_reads()`](https://gkanogiannis.github.io/metabinR/reference/ambiguous_reads.md)
+ignores those missing distances and omits reads with fewer than two
+finite candidates.
 
 ## In-memory inputs (Biostrings / ShortRead)
 
@@ -297,9 +340,9 @@ unlink("vignette__*")
 ``` r
 
 utils::sessionInfo()
-#> R version 4.6.0 (2026-04-24)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.4 LTS
+#> Running under: Ubuntu 24.04.5 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -321,57 +364,48 @@ utils::sessionInfo()
 #> [8] base     
 #> 
 #> other attached packages:
-#>  [1] Biostrings_2.80.0   Seqinfo_1.2.0       XVector_0.52.0     
-#>  [4] IRanges_2.46.0      S4Vectors_0.50.0    BiocGenerics_0.58.0
-#>  [7] generics_0.1.4      sabre_0.4.3         cvms_2.0.0         
-#> [10] gridExtra_2.3       ggplot2_4.0.3       dplyr_1.2.1        
-#> [13] data.table_1.18.2.1 metabinR_2.1.0      BiocStyle_2.40.0   
+#>  [1] Biostrings_2.80.2   Seqinfo_1.2.0       XVector_0.52.0     
+#>  [4] IRanges_2.46.0      S4Vectors_0.50.3    BiocGenerics_0.58.1
+#>  [7] generics_0.1.4      ggplot2_4.0.3       metabinR_2.1.1     
+#> [10] BiocStyle_2.40.0   
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] tidyselect_1.2.1            farver_2.1.2               
-#>  [3] R.utils_2.13.0              S7_0.2.2                   
-#>  [5] bitops_1.0-9                fastmap_1.2.0              
-#>  [7] pROC_1.19.0.1               GenomicAlignments_1.48.0   
-#>  [9] digest_0.6.39               lifecycle_1.0.5            
-#> [11] sf_1.1-0                    pwalign_1.8.0              
-#> [13] terra_1.9-11                magrittr_2.0.5             
-#> [15] compiler_4.6.0              rlang_1.2.0                
-#> [17] sass_0.4.10                 tools_4.6.0                
-#> [19] yaml_2.3.12                 knitr_1.51                 
-#> [21] labeling_0.4.3              S4Arrays_1.12.0            
-#> [23] classInt_0.4-11             interp_1.1-6               
-#> [25] sp_2.2-1                    DelayedArray_0.38.0        
-#> [27] plyr_1.8.9                  RColorBrewer_1.1-3         
-#> [29] KernSmooth_2.23-26          abind_1.4-8                
-#> [31] ShortRead_1.70.0            BiocParallel_1.45.0        
-#> [33] withr_3.0.2                 purrr_1.2.2                
-#> [35] hwriter_1.3.2.1             R.oo_1.27.1                
-#> [37] desc_1.4.3                  grid_4.6.0                 
-#> [39] latticeExtra_0.6-31         e1071_1.7-17               
-#> [41] scales_1.4.0                SummarizedExperiment_1.42.0
-#> [43] cli_3.6.6                   rmarkdown_2.31             
-#> [45] crayon_1.5.3                ragg_1.5.2                 
-#> [47] proxy_0.4-29                DBI_1.3.0                  
-#> [49] cachem_1.1.0                parallel_4.6.0             
-#> [51] BiocManager_1.30.27         matrixStats_1.5.0          
-#> [53] vctrs_0.7.3                 Matrix_1.7-5               
-#> [55] jsonlite_2.0.0              bookdown_0.46              
-#> [57] systemfonts_1.3.2           jpeg_0.1-11                
-#> [59] jquerylib_0.1.4             tidyr_1.3.2                
-#> [61] units_1.0-1                 glue_1.8.1                 
-#> [63] pkgdown_2.2.0               codetools_0.2-20           
-#> [65] rJava_1.0-18                gtable_0.3.6               
-#> [67] deldir_2.0-4                raster_3.6-32              
-#> [69] GenomicRanges_1.64.0        tibble_3.3.1               
-#> [71] pillar_1.11.1               htmltools_0.5.9            
-#> [73] entropy_1.3.2               R6_2.6.1                   
-#> [75] textshaping_1.0.5           evaluate_1.0.5             
-#> [77] lattice_0.22-9              Biobase_2.72.0             
-#> [79] R.methodsS3_1.8.2           png_0.1-9                  
-#> [81] backports_1.5.1             Rsamtools_2.28.0           
-#> [83] cigarillo_1.2.0             bslib_0.10.0               
-#> [85] class_7.3-23                Rcpp_1.1.1-1.1             
-#> [87] SparseArray_1.12.0          checkmate_2.3.4            
-#> [89] xfun_0.57                   fs_2.1.0                   
-#> [91] MatrixGenerics_1.24.0       pkgconfig_2.0.3
+#>  [1] SummarizedExperiment_1.42.0 gtable_0.3.6               
+#>  [3] xfun_0.61                   bslib_0.12.0               
+#>  [5] hwriter_1.3.2.1             latticeExtra_0.6-31        
+#>  [7] rJava_1.0-18                Biobase_2.72.0             
+#>  [9] lattice_0.22-9              vctrs_0.7.3                
+#> [11] tools_4.6.1                 bitops_1.1-0               
+#> [13] parallel_4.6.1              tibble_3.3.1               
+#> [15] pkgconfig_2.0.3             Matrix_1.7-5               
+#> [17] checkmate_2.3.4             RColorBrewer_1.1-3         
+#> [19] S7_0.2.2                    desc_1.4.3                 
+#> [21] cigarillo_1.2.1             lifecycle_1.0.5            
+#> [23] farver_2.1.2                compiler_4.6.1             
+#> [25] deldir_2.0-4                Rsamtools_2.28.0           
+#> [27] textshaping_1.0.5           codetools_0.2-20           
+#> [29] htmltools_0.5.9             sass_0.4.10                
+#> [31] yaml_2.3.12                 pillar_1.11.1              
+#> [33] pkgdown_2.2.1               crayon_1.5.3               
+#> [35] jquerylib_0.1.4             BiocParallel_1.46.0        
+#> [37] DelayedArray_0.38.2         cachem_1.1.0               
+#> [39] ShortRead_1.70.0            abind_1.4-8                
+#> [41] tidyselect_1.2.1            digest_0.6.39              
+#> [43] dplyr_1.2.1                 bookdown_0.48              
+#> [45] labeling_0.4.3              fastmap_1.2.0              
+#> [47] grid_4.6.1                  cli_3.6.6                  
+#> [49] SparseArray_1.12.3          magrittr_2.0.5             
+#> [51] S4Arrays_1.12.1             withr_3.0.3                
+#> [53] scales_1.4.0                backports_1.5.1            
+#> [55] rmarkdown_2.32              pwalign_1.8.0              
+#> [57] matrixStats_1.5.0           jpeg_0.1-11                
+#> [59] interp_1.1-6                otel_0.2.0                 
+#> [61] ragg_1.5.2                  png_0.1-9                  
+#> [63] evaluate_1.0.5              knitr_1.52                 
+#> [65] GenomicRanges_1.64.0        rlang_1.3.0                
+#> [67] Rcpp_1.1.2                  glue_1.8.1                 
+#> [69] BiocManager_1.30.27         jsonlite_2.0.0             
+#> [71] R6_2.6.1                    MatrixGenerics_1.24.0      
+#> [73] GenomicAlignments_1.48.0    systemfonts_1.3.2          
+#> [75] fs_2.1.0
 ```

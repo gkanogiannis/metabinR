@@ -11,6 +11,17 @@ High-level entry points for metagenome binning.
 - [`hierarchical_binning()`](https://gkanogiannis.github.io/metabinR/reference/hierarchical_binning.md)
   : Hierarchical (ABxCB) binning on metagenomic samples
 
+## Result analysis
+
+Summarize assignments and compare them with known read origins.
+
+- [`bin_summary()`](https://gkanogiannis.github.io/metabinR/reference/bin_summary.md)
+  : Summarize the bins in a metabinR result
+- [`ambiguous_reads()`](https://gkanogiannis.github.io/metabinR/reference/ambiguous_reads.md)
+  : Find reads with close competing bins
+- [`evaluate_bins()`](https://gkanogiannis.github.io/metabinR/reference/evaluate_bins.md)
+  : Evaluate read-level bin assignments against known origins
+
 ## MetabinResult
 
 S4 container for binning assignments and parameters.
