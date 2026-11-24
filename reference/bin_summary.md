@@ -36,6 +36,6 @@ bin_summary(res)
 #> DataFrame with 2 rows and 5 columns
 #>           bin   n_reads proportion mean_distance median_distance
 #>   <character> <integer>  <numeric>     <numeric>       <numeric>
-#> 1           2     19647   0.736836       36.0165              34
-#> 2           1      7017   0.263164       47.3955              46
+#> 1           1     19789   0.742162       36.2558              34
+#> 2           2      6875   0.257838       46.9417              46
 ```

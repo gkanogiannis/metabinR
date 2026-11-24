@@ -71,8 +71,8 @@ evaluation$overall
 #> DataFrame with 1 row and 6 columns
 #>     n_reads    n_bins n_origins weighted_purity weighted_recovery
 #>   <integer> <integer> <integer>       <numeric>         <numeric>
-#> 1     26664         2        10        0.598822          0.907478
+#> 1     26664         2        10        0.596047          0.904028
 #>   adjusted_rand_index
 #>             <numeric>
-#> 1            0.255206
+#> 1            0.251943
 ```

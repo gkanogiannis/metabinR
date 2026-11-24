@@ -115,9 +115,9 @@ summaries use only each read’s distance to its assigned bin:
 head(as.data.frame(assignments(res.AB)))
 #>   read_id AB        AB.1        AB.2
 #> 1  S0R0/1  1 0.032307751 0.004981781
-#> 2  S0R0/2  1 0.030796454 0.005614620
-#> 3  S0R1/1  1 0.021667648 0.009437209
-#> 4  S0R1/2  1 0.019364505 0.010336333
+#> 2  S0R1/1  1 0.021667648 0.009437209
+#> 3  S0R1/2  1 0.019364505 0.010336333
+#> 4  S0R0/2  1 0.030796454 0.005614620
 #> 5  S0R2/1  1 0.013742806 0.012755650
 #> 6  S0R2/2  2 0.009775655 0.014416852
 knitr::kable(as.data.frame(bin_summary(res.AB)), digits = 3)
@@ -208,33 +208,33 @@ knitr::kable(as.data.frame(bin_summary(res.CB)), digits = 3)
 
 | bin | n_reads | proportion | mean_distance | median_distance |
 |:----|--------:|-----------:|--------------:|----------------:|
-| 7   |    5687 |      0.213 |      15463.45 |           15354 |
-| 10  |    1450 |      0.054 |      16622.33 |           16688 |
-| 6   |    1036 |      0.039 |      15260.93 |           15099 |
-| 3   |    7571 |      0.284 |      16480.01 |           16472 |
-| 5   |    2855 |      0.107 |      15620.85 |           15452 |
-| 1   |    1708 |      0.064 |      16207.55 |           16081 |
-| 9   |    3974 |      0.149 |      15891.34 |           15757 |
-| 4   |    1215 |      0.046 |      15094.21 |           14892 |
-| 8   |     539 |      0.020 |      16352.11 |           16174 |
-| 2   |     629 |      0.024 |      16610.71 |           16412 |
+| 7   |    4807 |      0.180 |      15305.26 |           15172 |
+| 6   |    2022 |      0.076 |      16509.64 |           16496 |
+| 8   |     896 |      0.034 |      15725.92 |           15531 |
+| 3   |    1002 |      0.038 |      16328.95 |           16078 |
+| 10  |    7567 |      0.284 |      16477.25 |           16476 |
+| 2   |    2413 |      0.090 |      16003.51 |           15918 |
+| 5   |    4958 |      0.186 |      15670.94 |           15540 |
+| 4   |    1513 |      0.057 |      15810.82 |           15720 |
+| 1   |     990 |      0.037 |      15069.27 |           14831 |
+| 9   |     496 |      0.019 |      16200.50 |           15992 |
 
 ``` r
 
 close.reads <- ambiguous_reads(res.CB, margin = 0.05)
 nrow(close.reads)
-#> [1] 15
+#> [1] 25
 knitr::kable(head(as.data.frame(close.reads)), digits = 3)
 ```
 
 | read_id   | bin | best_distance | second_distance | distance_margin |
 |:----------|:----|--------------:|----------------:|----------------:|
-| S0R774/2  | 5   |         15726 |           15726 |               0 |
-| S0R2707/2 | 4   |         16176 |           16176 |               0 |
-| S0R3591/1 | 5   |         15214 |           15214 |               0 |
-| S0R5272/1 | 5   |         15904 |           15904 |               0 |
-| S0R5811/2 | 6   |         17310 |           17310 |               0 |
-| S0R7348/1 | 1   |         16936 |           16936 |               0 |
+| S0R302/1  | 2   |         12510 |           12510 |               0 |
+| S0R359/1  | 5   |         13606 |           13606 |               0 |
+| S0R1323/2 | 2   |         14900 |           14900 |               0 |
+| S0R1409/2 | 3   |         15436 |           15436 |               0 |
+| S0R2113/2 | 4   |         18834 |           18834 |               0 |
+| S0R2172/2 | 7   |         17562 |           17562 |               0 |
 
 Evaluate by genome of origin. Best-bin recovery is the fraction of an
 origin’s reads found in its single largest bin; it is not genome
@@ -250,16 +250,16 @@ knitr::kable(as.data.frame(eval.CB$per_origin), digits = 3)
 
 | origin     | n_reads | dominant_bin | recovered_reads | best_bin_recovery |
 |:-----------|--------:|:-------------|----------------:|------------------:|
-| Genome15.0 |   14190 | 7            |            5136 |             0.362 |
-| Genome3.0  |    5886 | 9            |            1565 |             0.266 |
-| Genome2.0  |     538 | 3            |             219 |             0.407 |
-| Genome12.0 |    3782 | 3            |            3677 |             0.972 |
-| Genome11.0 |    1186 | 3            |            1152 |             0.971 |
-| Genome6.0  |     356 | 2            |              57 |             0.160 |
-| Genome17.0 |     594 | 1            |             233 |             0.392 |
-| Genome22.0 |       8 | 3            |               6 |             0.750 |
-| Genome23.0 |      80 | 3            |              80 |             1.000 |
-| Genome4.0  |      44 | 2            |              14 |             0.318 |
+| Genome15.0 |   14190 | 7            |            4371 |             0.308 |
+| Genome3.0  |    5886 | 5            |            1582 |             0.269 |
+| Genome2.0  |     538 | 10           |             220 |             0.409 |
+| Genome12.0 |    3782 | 10           |            3675 |             0.972 |
+| Genome11.0 |    1186 | 10           |            1152 |             0.971 |
+| Genome6.0  |     356 | 3            |              65 |             0.183 |
+| Genome17.0 |     594 | 4            |             237 |             0.399 |
+| Genome22.0 |       8 | 10           |               6 |             0.750 |
+| Genome23.0 |      80 | 10           |              80 |             1.000 |
+| Genome4.0  |      44 | 9            |              17 |             0.386 |
 
 ``` r
 
@@ -268,7 +268,7 @@ knitr::kable(as.data.frame(eval.CB$overall), digits = 3)
 
 | n_reads | n_bins | n_origins | weighted_purity | weighted_recovery | adjusted_rand_index |
 |---:|---:|---:|---:|---:|---:|
-| 26664 | 10 | 10 | 0.615 | 0.455 | 0.12 |
+| 26664 | 10 | 10 | 0.622 | 0.428 | 0.107 |
 
 ## Hierarchical (2-step ABxCB) binning example
 
@@ -340,13 +340,13 @@ unlink("vignette__*")
 ``` r
 
 utils::sessionInfo()
-#> R version 4.6.1 (2026-06-24)
+#> R version 4.6.2 (2026-10-29)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.5 LTS
+#> Running under: Ubuntu 26.04.1 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so;  LAPACK version 3.12.0
 #> 
 #> locale:
 #>  [1] LC_CTYPE=C.UTF-8          LC_NUMERIC=C             
@@ -366,25 +366,25 @@ utils::sessionInfo()
 #> other attached packages:
 #>  [1] Biostrings_2.80.2   Seqinfo_1.2.0       XVector_0.52.0     
 #>  [4] IRanges_2.46.0      S4Vectors_0.50.3    BiocGenerics_0.58.1
-#>  [7] generics_0.1.4      ggplot2_4.0.3       metabinR_2.1.1     
+#>  [7] generics_0.1.4      ggplot2_4.0.4       metabinR_2.2.0     
 #> [10] BiocStyle_2.40.0   
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] SummarizedExperiment_1.42.0 gtable_0.3.6               
-#>  [3] xfun_0.61                   bslib_0.12.0               
+#>  [3] xfun_0.62                   bslib_0.12.0               
 #>  [5] hwriter_1.3.2.1             latticeExtra_0.6-31        
 #>  [7] rJava_1.0-18                Biobase_2.72.0             
-#>  [9] lattice_0.22-9              vctrs_0.7.3                
-#> [11] tools_4.6.1                 bitops_1.1-0               
-#> [13] parallel_4.6.1              tibble_3.3.1               
-#> [15] pkgconfig_2.0.3             Matrix_1.7-5               
+#>  [9] lattice_0.23-1              vctrs_0.7.3                
+#> [11] tools_4.6.2                 bitops_1.1-0               
+#> [13] parallel_4.6.2              tibble_3.3.1               
+#> [15] pkgconfig_2.0.3             Matrix_1.7-6               
 #> [17] checkmate_2.3.4             RColorBrewer_1.1-3         
-#> [19] S7_0.2.2                    desc_1.4.3                 
+#> [19] S7_1.0.0                    desc_1.4.3                 
 #> [21] cigarillo_1.2.1             lifecycle_1.0.5            
-#> [23] farver_2.1.2                compiler_4.6.1             
+#> [23] farver_2.1.2                compiler_4.6.2             
 #> [25] deldir_2.0-4                Rsamtools_2.28.0           
-#> [27] textshaping_1.0.5           codetools_0.2-20           
-#> [29] htmltools_0.5.9             sass_0.4.10                
+#> [27] textshaping_1.1.0           codetools_0.2-20           
+#> [29] htmltools_0.5.9             sass_0.5.0                 
 #> [31] yaml_2.3.12                 pillar_1.11.1              
 #> [33] pkgdown_2.2.1               crayon_1.5.3               
 #> [35] jquerylib_0.1.4             BiocParallel_1.46.0        
@@ -393,19 +393,19 @@ utils::sessionInfo()
 #> [41] tidyselect_1.2.1            digest_0.6.39              
 #> [43] dplyr_1.2.1                 bookdown_0.48              
 #> [45] labeling_0.4.3              fastmap_1.2.0              
-#> [47] grid_4.6.1                  cli_3.6.6                  
+#> [47] grid_4.6.2                  cli_3.6.6                  
 #> [49] SparseArray_1.12.3          magrittr_2.0.5             
 #> [51] S4Arrays_1.12.1             withr_3.0.3                
 #> [53] scales_1.4.0                backports_1.5.1            
 #> [55] rmarkdown_2.32              pwalign_1.8.0              
 #> [57] matrixStats_1.5.0           jpeg_0.1-11                
-#> [59] interp_1.1-6                otel_0.2.0                 
+#> [59] interp_1.1-6                otel_0.3.0                 
 #> [61] ragg_1.5.2                  png_0.1-9                  
 #> [63] evaluate_1.0.5              knitr_1.52                 
 #> [65] GenomicRanges_1.64.0        rlang_1.3.0                
 #> [67] Rcpp_1.1.2                  glue_1.8.1                 
 #> [69] BiocManager_1.30.27         jsonlite_2.0.0             
 #> [71] R6_2.6.1                    MatrixGenerics_1.24.0      
-#> [73] GenomicAlignments_1.48.0    systemfonts_1.3.2          
+#> [73] GenomicAlignments_1.48.0    systemfonts_1.3.4          
 #> [75] fs_2.1.0
 ```
