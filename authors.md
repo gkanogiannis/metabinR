@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/gkanogiannis/metabinR/blob/devel/inst/CITATION)
+[`inst/CITATION`](https://github.com/gkanogiannis/metabinR/blob/v2.2.0/inst/CITATION)
 
 Anestis G, Bruls T (2016). “A scalable assembly-free variable selection
 algorithm for biomarker discovery from metagenomes.” *BMC

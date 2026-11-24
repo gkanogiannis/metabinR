@@ -62,7 +62,7 @@ Gkanogiannis</h4>
       
                   
       
-      <small class="dont-index">Source: <a href="https://github.com/gkanogiannis/metabinR/blob/devel/vignettes/metabinR_vignette.Rmd" class="external-link"><code>vignettes/metabinR_vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/gkanogiannis/metabinR/blob/v2.2.0/vignettes/metabinR_vignette.Rmd" class="external-link"><code>vignettes/metabinR_vignette.Rmd</code></a></small>
       <div class="d-none name"><code>metabinR_vignette.Rmd</code></div>
     </div>
 
@@ -180,11 +180,11 @@ summaries use only each read’s distance to its assigned bin:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/MetabinResult-accessors.html">assignments</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   read_id AB        AB.1        AB.2</span></span>
 <span><span class="co">#&gt; 1  S0R0/1  1 0.032307751 0.004981781</span></span>
-<span><span class="co">#&gt; 2  S0R1/1  1 0.021667648 0.009437209</span></span>
+<span><span class="co">#&gt; 2  S0R0/2  1 0.030796454 0.005614620</span></span>
 <span><span class="co">#&gt; 3  S0R1/2  1 0.019364505 0.010336333</span></span>
-<span><span class="co">#&gt; 4  S0R0/2  1 0.030796454 0.005614620</span></span>
-<span><span class="co">#&gt; 5  S0R2/1  1 0.013742806 0.012755650</span></span>
-<span><span class="co">#&gt; 6  S0R2/2  2 0.009775655 0.014416852</span></span>
+<span><span class="co">#&gt; 4  S0R2/1  1 0.013742806 0.012755650</span></span>
+<span><span class="co">#&gt; 5  S0R2/2  2 0.009775655 0.014416852</span></span>
+<span><span class="co">#&gt; 6  S0R3/1  1 0.031094930 0.005424344</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/bin_summary.html">bin_summary</a></span><span class="op">(</span><span class="va">res.AB</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -323,80 +323,80 @@ narrow:</p>
 <tbody>
 <tr class="odd">
 <td align="left">7</td>
-<td align="right">4807</td>
-<td align="right">0.180</td>
-<td align="right">15305.26</td>
-<td align="right">15172</td>
+<td align="right">3592</td>
+<td align="right">0.135</td>
+<td align="right">15271.77</td>
+<td align="right">15112</td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
-<td align="right">2022</td>
-<td align="right">0.076</td>
-<td align="right">16509.64</td>
-<td align="right">16496</td>
-</tr>
-<tr class="odd">
-<td align="left">8</td>
-<td align="right">896</td>
-<td align="right">0.034</td>
-<td align="right">15725.92</td>
-<td align="right">15531</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="right">1002</td>
-<td align="right">0.038</td>
-<td align="right">16328.95</td>
-<td align="right">16078</td>
-</tr>
-<tr class="odd">
-<td align="left">10</td>
-<td align="right">7567</td>
-<td align="right">0.284</td>
-<td align="right">16477.25</td>
-<td align="right">16476</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="right">2413</td>
-<td align="right">0.090</td>
-<td align="right">16003.51</td>
-<td align="right">15918</td>
-</tr>
-<tr class="odd">
 <td align="left">5</td>
-<td align="right">4958</td>
-<td align="right">0.186</td>
-<td align="right">15670.94</td>
-<td align="right">15540</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">1513</td>
-<td align="right">0.057</td>
-<td align="right">15810.82</td>
-<td align="right">15720</td>
+<td align="right">2105</td>
+<td align="right">0.079</td>
+<td align="right">16093.24</td>
+<td align="right">15976</td>
 </tr>
 <tr class="odd">
 <td align="left">1</td>
-<td align="right">990</td>
-<td align="right">0.037</td>
-<td align="right">15069.27</td>
-<td align="right">14831</td>
+<td align="right">3702</td>
+<td align="right">0.139</td>
+<td align="right">15573.81</td>
+<td align="right">15449</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="right">7541</td>
+<td align="right">0.283</td>
+<td align="right">16464.74</td>
+<td align="right">16458</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="right">4537</td>
+<td align="right">0.170</td>
+<td align="right">15573.39</td>
+<td align="right">15442</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="right">819</td>
+<td align="right">0.031</td>
+<td align="right">15569.77</td>
+<td align="right">15316</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="right">839</td>
+<td align="right">0.031</td>
+<td align="right">15258.18</td>
+<td align="right">15054</td>
 </tr>
 <tr class="even">
 <td align="left">9</td>
-<td align="right">496</td>
-<td align="right">0.019</td>
-<td align="right">16200.50</td>
-<td align="right">15992</td>
+<td align="right">1464</td>
+<td align="right">0.055</td>
+<td align="right">16761.58</td>
+<td align="right">16714</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="right">1493</td>
+<td align="right">0.056</td>
+<td align="right">16234.53</td>
+<td align="right">16124</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="right">572</td>
+<td align="right">0.021</td>
+<td align="right">16004.78</td>
+<td align="right">15655</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">close.reads</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ambiguous_reads.html">ambiguous_reads</a></span><span class="op">(</span><span class="va">res.CB</span>, margin <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">close.reads</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 25</span></span>
+<span><span class="co">#&gt; [1] 20</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">close.reads</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -408,45 +408,45 @@ narrow:</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">S0R302/1</td>
-<td align="left">2</td>
-<td align="right">12510</td>
-<td align="right">12510</td>
+<td align="left">S0R41/2</td>
+<td align="left">1</td>
+<td align="right">14410</td>
+<td align="right">14410</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">S0R359/1</td>
-<td align="left">5</td>
-<td align="right">13606</td>
-<td align="right">13606</td>
+<td align="left">S0R271/2</td>
+<td align="left">1</td>
+<td align="right">15604</td>
+<td align="right">15604</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td align="left">S0R1323/2</td>
-<td align="left">2</td>
-<td align="right">14900</td>
-<td align="right">14900</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">S0R1409/2</td>
-<td align="left">3</td>
-<td align="right">15436</td>
-<td align="right">15436</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">S0R2113/2</td>
-<td align="left">4</td>
-<td align="right">18834</td>
-<td align="right">18834</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">S0R2172/2</td>
+<td align="left">S0R765/2</td>
 <td align="left">7</td>
-<td align="right">17562</td>
-<td align="right">17562</td>
+<td align="right">16146</td>
+<td align="right">16146</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">S0R1288/2</td>
+<td align="left">1</td>
+<td align="right">15222</td>
+<td align="right">15222</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">S0R1763/2</td>
+<td align="left">2</td>
+<td align="right">15932</td>
+<td align="right">15932</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">S0R2831/1</td>
+<td align="left">1</td>
+<td align="right">15460</td>
+<td align="right">15460</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -472,71 +472,71 @@ all evaluated reads:</p>
 <td align="left">Genome15.0</td>
 <td align="right">14190</td>
 <td align="left">7</td>
-<td align="right">4371</td>
-<td align="right">0.308</td>
+<td align="right">3103</td>
+<td align="right">0.219</td>
 </tr>
 <tr class="even">
 <td align="left">Genome3.0</td>
 <td align="right">5886</td>
-<td align="left">5</td>
-<td align="right">1582</td>
-<td align="right">0.269</td>
+<td align="left">2</td>
+<td align="right">1676</td>
+<td align="right">0.285</td>
 </tr>
 <tr class="odd">
 <td align="left">Genome2.0</td>
 <td align="right">538</td>
-<td align="left">10</td>
-<td align="right">220</td>
-<td align="right">0.409</td>
+<td align="left">3</td>
+<td align="right">215</td>
+<td align="right">0.400</td>
 </tr>
 <tr class="even">
 <td align="left">Genome12.0</td>
 <td align="right">3782</td>
-<td align="left">10</td>
-<td align="right">3675</td>
+<td align="left">3</td>
+<td align="right">3676</td>
 <td align="right">0.972</td>
 </tr>
 <tr class="odd">
 <td align="left">Genome11.0</td>
 <td align="right">1186</td>
-<td align="left">10</td>
-<td align="right">1152</td>
-<td align="right">0.971</td>
+<td align="left">3</td>
+<td align="right">1153</td>
+<td align="right">0.972</td>
 </tr>
 <tr class="even">
 <td align="left">Genome6.0</td>
 <td align="right">356</td>
-<td align="left">3</td>
-<td align="right">65</td>
-<td align="right">0.183</td>
+<td align="left">10</td>
+<td align="right">94</td>
+<td align="right">0.264</td>
 </tr>
 <tr class="odd">
 <td align="left">Genome17.0</td>
 <td align="right">594</td>
-<td align="left">4</td>
-<td align="right">237</td>
-<td align="right">0.399</td>
+<td align="left">6</td>
+<td align="right">168</td>
+<td align="right">0.283</td>
 </tr>
 <tr class="even">
 <td align="left">Genome22.0</td>
 <td align="right">8</td>
-<td align="left">10</td>
+<td align="left">3</td>
 <td align="right">6</td>
 <td align="right">0.750</td>
 </tr>
 <tr class="odd">
 <td align="left">Genome23.0</td>
 <td align="right">80</td>
-<td align="left">10</td>
+<td align="left">3</td>
 <td align="right">80</td>
 <td align="right">1.000</td>
 </tr>
 <tr class="even">
 <td align="left">Genome4.0</td>
 <td align="right">44</td>
-<td align="left">9</td>
-<td align="right">17</td>
-<td align="right">0.386</td>
+<td align="left">10</td>
+<td align="right">22</td>
+<td align="right">0.500</td>
 </tr>
 </tbody>
 </table>
@@ -563,9 +563,9 @@ all evaluated reads:</p>
 <td align="right">26664</td>
 <td align="right">10</td>
 <td align="right">10</td>
-<td align="right">0.622</td>
-<td align="right">0.428</td>
-<td align="right">0.107</td>
+<td align="right">0.626</td>
+<td align="right">0.382</td>
+<td align="right">0.088</td>
 </tr></tbody>
 </table>
 </div>
